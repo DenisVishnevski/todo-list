@@ -4,11 +4,18 @@ import { useState } from 'react';
 
 function ContentBlock(props) {
     const [descriptionHeight, setDescriptionHeight] = useState(30);
-
+    /**
+     * Передает родительскому компоненту значение поля "Описание", вызывает функцию-обработчик высоты скролла.
+     * @param {React.ChangeEvent<HTMLInputElement>} event 
+     */
     function descriptionHandler (event) {
         props.setDescriptionValue(event.target.value);
         scrollTopHandler(event);
     }
+    /**
+     * Увеличивает элемент поля "Описание" до размера блока текста.
+     * @param {React.ChangeEvent<HTMLInputElement>} event 
+     */
     function scrollTopHandler(event) {
           setDescriptionHeight(event.target.scrollHeight);
       }

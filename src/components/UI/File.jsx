@@ -6,6 +6,12 @@ function File(props) {
     const [fileName, setFileName] = useState('');
 
     useEffect(() => {
+        formattingFileName();
+    }, []);
+/**
+ * Форматирует имя файла под размер блока
+ */
+    function formattingFileName() {
         let newFileName = '';
         let fileFormat = '';
         if (props.name.length > 13) {
@@ -22,7 +28,7 @@ function File(props) {
         else {
             setFileName(props.name);
         }
-    }, []);
+    }
     return (
         <div className="file">
             <img

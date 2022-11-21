@@ -21,7 +21,6 @@ function Task(props) {
     const [filesArray, setFilesArray] = useState(props.filesArray);
 
     const nowDate = dayJS(new Date());
-
     useEffect(() => {
         const interval = setInterval(() => {
             if (dayJS(dateValue).isBefore(nowDate)) {
@@ -34,7 +33,9 @@ function Task(props) {
         return () => clearInterval(interval);
     }, [dateValue]);
 
-
+    /**
+      * Переключает открытое и закрытое состояние меню, меняет направление кнопки "Открыть/Закрыть" (стрелка).
+      */
     function isOpenTaskHandler() {
         if (menuIsOpen) {
             setMenuIsOpen(false);
@@ -45,11 +46,15 @@ function Task(props) {
             setOpenButtonScaleY(-1);
         }
     }
-
+    /**
+     * Вызывает родительскую функцию "Удалить задачу", передает ей id задачи.
+     */
     function deleteTask() {
         props.deleteTask(props.id)
     }
-
+    /**
+     * Переключает выполненное и активное состояния задачи.
+     */
     function isPerformed() {
         if (isPerformedTask) {
             setIsPerformedTask(false);
@@ -60,10 +65,18 @@ function Task(props) {
             setTitleColor('#55ECEC');
         }
     }
-    function addFile(event, id) {
+    /**
+      * Добавляет в массив обьект {назваеие файла, путь файла}.
+      * @param {React.ChangeEvent<HTMLInputElement>} event 
+      */
+    function addFile(event) {
         event.preventDefault();
         setFilesArray([...filesArray, { name: event.target.files[0].name, path: event.target.value }]);
     }
+   /**
+   * Пересобирает массив файлов, исключая из списка нужный файл.
+   * @param {number} id номер удаляемого файла.
+   */
     function deleteFile(id) {
         const newFileArray = [];
         for (let index = 0; index < filesArray.length; index++) {
@@ -108,13 +121,13 @@ function Task(props) {
                 <div className="buttons_block">
                     {menuIsOpen
                         ? null
-                        : <h2 style={{ color: dateColor }}>{props.deadline ? dayJS(props.deadline).format('DD.MM') : ''}</h2>
+                        : <h2 style={{ color: dateColor }}>{props.deadline ? dayJS(dateValue).format('DD.MM') : ''}</h2>
                     }
                     {menuIsOpen
                         ? <FileInput addFile={addFile} taskId={props.id} />
                         : null
                     }
-                    <img style={{transform: `scale(1, ${openButtonScaleY}`}} onClick={isOpenTaskHandler} src={arrowIcon} alt="Open/Close" />
+                    <img style={{ transform: `scale(1, ${openButtonScaleY}` }} onClick={isOpenTaskHandler} src={arrowIcon} alt="Open/Close" />
                     <DeleteButton onClick={deleteTask} />
 
                 </div>

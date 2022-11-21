@@ -3,6 +3,7 @@ import '../css/CreateNewTaskMenu.css';
 import plus from '../assets/images/plus.svg';
 import clip from '../assets/images/clip.svg';
 import ContentBlock from './ContentBlock';
+import FileInput from './FileInput';
 
 function CreateNewTaskMenu(props) {
   const [menuHeight, setMenuHeight] = useState(80);
@@ -13,9 +14,11 @@ function CreateNewTaskMenu(props) {
   const [titleValue, setTitleValue] = useState('');
   const [descriptionValue, setDescriptionValue] = useState('');
   const [dateValue, setDateValue] = useState('');
-  const [fileValue, setFileValue] = useState('');
   const [filesArray, setFilesArray] = useState([]);
 
+  /**
+   * При вызове функция переключает открытое и закрытое состояние меню.
+   */
   function isOpenMenuHandler() {
     if (menuIsOpen) {
       closeMenu();
@@ -24,12 +27,19 @@ function CreateNewTaskMenu(props) {
       openMenu();
     }
   }
-
+  /**
+   * Открывает меню: увеличивает высоту блока, 
+   * меняет кнопку "создать" (знак плюса) на закрыть блок (крестик). 
+   */
   function openMenu() {
     setMenuHeight(250);
     setMenuIsOpen(true);
     setButtonIconRotation(45);
   }
+  /**
+   * Закрывает меню: присваивает значения по умолчанию всем полям, уменьшает высоту блока,
+   * меняет кнопку закрыть блок (крестик) на "создать" (знак плюса).
+   */
   function closeMenu() {
     setTitleValue('');
     setDescriptionValue('');
@@ -39,15 +49,25 @@ function CreateNewTaskMenu(props) {
     setMenuHeight(80);
     setButtonIconRotation(0);
   }
+  /**
+   * Передает поля родительскому компоненту, закрывает блок. 
+   */
   function submitTask() {
     props.addTask(titleValue, descriptionValue, dateValue, filesArray);
     closeMenu();
   }
+  /**
+   * Добавляет в массив обьект {назваеие файла, путь файла}.
+   * @param {React.ChangeEvent<HTMLInputElement>} event 
+   */
   function addFile(event) {
     event.preventDefault();
-    setFilesArray([...filesArray, {name: event.target.files[0].name, path: event.target.value }]);
-    setFileValue('');
+    setFilesArray([...filesArray, { name: event.target.files[0].name, path: event.target.value }]);
   }
+  /**
+   * Пересобирает массив файлов, исключая из списка нужный файл.
+   * @param {number} id номер удаляемого файла.
+   */
   function deleteFile(id) {
     const newFileArray = [];
     for (let index = 0; index < filesArray.length; index++) {
@@ -61,13 +81,12 @@ function CreateNewTaskMenu(props) {
       setFilesArray(newFileArray);
       setFilesListHeight(0);
     }, "1")
-    console.log(newFileArray);
   }
   return (
     <div className='create_new_task_menu' style={{ minHeight: menuHeight }}>
       <div className="upper_block">
         <div className='left_block'>
-          <img style={{transform: `rotate(${plusButtonRotation}deg)`}} onClick={isOpenMenuHandler} src={plus} alt="Create" />
+          <img style={{ transform: `rotate(${plusButtonRotation}deg)` }} onClick={isOpenMenuHandler} src={plus} alt="Create" />
           {menuIsOpen
             ? (
               <ContentBlock
@@ -85,16 +104,7 @@ function CreateNewTaskMenu(props) {
           }
         </div>
         {menuIsOpen
-          ? (<label htmlFor="file_input">
-            <img className='climp' src={clip} alt="Прикрепить" />
-            <input
-              className='file_input'
-              id="file_input"
-              type="file"
-              value={fileValue}
-              onChange={addFile}
-            />
-          </label>)
+          ? <FileInput addFile={addFile} taskId={'menu'} />
           : null
         }
 
