@@ -1,0 +1,30 @@
+.file {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  border-radius: 20px;
+}
+.file img {
+  margin: 0;
+}
+.file .delete_button {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  right: 8px;
+  top: 8px;
+  margin: 0;
+}
+.file h2 {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  color: #212121;
+  font-size: 14px;
+}
+/*# sourceMappingURL=File.css.map */

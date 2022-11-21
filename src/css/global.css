@@ -1,0 +1,37 @@
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  src: url('../assets/fonts/Nunito/Bold/Nunito-Bold.ttf') format('ttf'), url('../assets/fonts/Nunito//Bold/Nunito-Bold.woff') format('woff'), url('../assets/fonts/Nunito/Bold/Nunito-Bold.woff2') format('woff2');
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+#root {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+body {
+  background-color: #212121;
+}
+* {
+  font-family: "Nunito", sans-serif;
+  color: #ffffff;
+  margin: 0;
+}
+.wrapper {
+  width: 804px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.wrapper h1 {
+  margin-top: 50px;
+}
+/*# sourceMappingURL=global.css.map */
