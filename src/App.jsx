@@ -42,7 +42,6 @@ function App() {
       }
     }
     setTaskList(newTaskArray);
-    console.log(newTaskArray);
   }
 
   /**

@@ -10,8 +10,10 @@ function ContentBlock(props) {
      */
     function descriptionHandler (event) {
         props.setDescriptionValue(event.target.value);
-        props.updateTask({description: event.target.value});
         scrollTopHandler(event);
+        if (props.updateTask) {
+            props.updateTask({description: event.target.value});
+        }
     }
     /**
      * Увеличивает элемент поля "Описание" до размера блока текста.
@@ -29,7 +31,9 @@ function ContentBlock(props) {
                 className='title_input'
                 onChange={(event) => { 
                     props.setTitleValue(event.target.value);
-                    props.updateTask({title: event.target.value});
+                    if (props.updateTask) {
+                        props.updateTask({title: event.target.value});
+                    }
                 }}
             />
             <textarea
