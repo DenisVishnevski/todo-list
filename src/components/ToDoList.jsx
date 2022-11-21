@@ -11,7 +11,9 @@ function ToDoList(props) {  return (
                         deadline={task.deadline}
                         filesArray={task.filesArray}
                         id={task.id}
+                        updateTasksList={props.updateTasksList}
                         deleteTask={props.deleteTask}
+                        isPerformed={task.isPerformed}
                     />
                 )}
         </div>

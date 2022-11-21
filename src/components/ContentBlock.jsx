@@ -10,6 +10,7 @@ function ContentBlock(props) {
      */
     function descriptionHandler (event) {
         props.setDescriptionValue(event.target.value);
+        props.updateTask({description: event.target.value});
         scrollTopHandler(event);
     }
     /**
@@ -26,7 +27,10 @@ function ContentBlock(props) {
                 placeholder='Название'
                 value={props.titleValue}
                 className='title_input'
-                onChange={(event) => { props.setTitleValue(event.target.value) }}
+                onChange={(event) => { 
+                    props.setTitleValue(event.target.value);
+                    props.updateTask({title: event.target.value});
+                }}
             />
             <textarea
                 placeholder='Описание'

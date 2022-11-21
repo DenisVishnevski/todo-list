@@ -7,7 +7,7 @@ import FileInput from './FileInput';
 import DeleteButton from './UI/DeleteButton';
 
 function Task(props) {
-    const [isPerformedTask, setIsPerformedTask] = useState(false);
+    const [isPerformedTask, setIsPerformedTask] = useState(props.isPerformed);
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const [dateColor, setDateColor] = useState('#FFFFFF');
     const [titleColor, setTitleColor] = useState(props.title);
@@ -17,7 +17,6 @@ function Task(props) {
     const [titleValue, setTitleValue] = useState(props.title);
     const [descriptionValue, setDescriptionValue] = useState(props.description);
     const [dateValue, setDateValue] = useState(props.deadline);
-
     const [filesArray, setFilesArray] = useState(props.filesArray);
 
     const nowDate = dayJS(new Date());
@@ -46,6 +45,15 @@ function Task(props) {
             setOpenButtonScaleY(-1);
         }
     }
+    
+    /**
+     * Передает объект родительскому компоненту.
+     * @param {object} value объект состоящий из одного свойства, в которое передается значение из поля ввода.
+     */
+    function updateTask(value) {
+        props.updateTasksList(props.id, value);
+
+    }
     /**
      * Вызывает родительскую функцию "Удалить задачу", передает ей id задачи.
      */
@@ -53,30 +61,33 @@ function Task(props) {
         props.deleteTask(props.id)
     }
     /**
-     * Переключает выполненное и активное состояния задачи.
+     * Переключает выполненное и активное состояния задачи, передает его родительскому компоненту.
      */
     function isPerformed() {
         if (isPerformedTask) {
             setIsPerformedTask(false);
             setTitleColor('#FFFFFF');
+            updateTask({ isPerformed: false });
         }
         else {
             setIsPerformedTask(true);
             setTitleColor('#55ECEC');
+            updateTask({ isPerformed: true });
         }
     }
     /**
-      * Добавляет в массив обьект {назваеие файла, путь файла}.
+      * Добавляет в массив обьект {назваеие файла, путь файла}, также передает его родительскому компоненту.
       * @param {React.ChangeEvent<HTMLInputElement>} event 
       */
     function addFile(event) {
         event.preventDefault();
         setFilesArray([...filesArray, { name: event.target.files[0].name, path: event.target.value }]);
+        updateTask({ filesArray: [...filesArray, { name: event.target.files[0].name, path: event.target.value }] });
     }
-   /**
-   * Пересобирает массив файлов, исключая из списка нужный файл.
-   * @param {number} id номер удаляемого файла.
-   */
+    /**
+    * Пересобирает массив файлов, исключая из списка нужный файл, передает массив родительскому компоненту.
+    * @param {number} id номер удаляемого файла.
+    */
     function deleteFile(id) {
         const newFileArray = [];
         for (let index = 0; index < filesArray.length; index++) {
@@ -88,9 +99,9 @@ function Task(props) {
         setFilesArray([]);
         setTimeout(() => {
             setFilesArray(newFileArray);
+            updateTask({ filesArray: newFileArray });
             setFilesListHeight(0);
         }, "1")
-        console.log(newFileArray);
     }
     return (
         <div className="task">
@@ -112,6 +123,7 @@ function Task(props) {
                                 filesArray={filesArray}
                                 deleteFile={deleteFile}
                                 filesListHeight={filesListHeight}
+                                updateTask={updateTask}
                             />
                         )
                         : <h2 style={{ color: titleColor }} >{titleValue}</h2>
@@ -141,7 +153,8 @@ function Task(props) {
                             style={{ color: dateColor }}
                             value={dateValue}
                             onChange={(event) => {
-                                setDateValue(event.target.value)
+                                setDateValue(event.target.value);
+                                updateTask({ deadline: event.target.value });
                             }}
                         />
                     </div>

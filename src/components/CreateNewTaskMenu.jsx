@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import '../css/CreateNewTaskMenu.css';
 import plus from '../assets/images/plus.svg';
-import clip from '../assets/images/clip.svg';
 import ContentBlock from './ContentBlock';
 import FileInput from './FileInput';
 
