@@ -21,7 +21,6 @@ function Task(props) {
     const nowDate = dayJS(new Date());
     useEffect(() => {
         const interval = setInterval(() => {
-            console.log(props.isPerformed);
             if (dayJS(dateValue).isBefore(nowDate) && isPerformedTask === false) {
                 setDateColor('#FF5656');
             }
