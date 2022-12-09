@@ -1,108 +1,6 @@
-@background_color: #705CF1;
-@placeholders_color: #B9AEFF;
 
-.title_input {
-    height: 32px;
-    font-size: 22px;
-    color: #ffffff;
-    background-color: #705CF1;
-    border: none;
-}
 
-.inputs_style {
-    background-color: @background_color;
-    border: none;
-
-    &::placeholder {
-        color: @placeholders_color;
-    }
-
-    &:focus {
-        outline: none;
-    }
-}
-
-.task_block {
-    img {
-        width: 32px;
-        height: 32px;
-        margin-right: 30px;
-    }
-
-    .climp {
-        margin: 0;
-    }
-
-    h2 {
-        margin-top: 4px;
-        font-size: 20px;
-        color: @placeholders_color;
-    }
-
-}
-
-.upper_block {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-
-    .left_block {
-        width: 100%;
-        display: flex;
-
-        &>img {
-            height: 32px;
-            margin-right: 30px;
-            cursor: pointer;
-        }
-
-        &>h2 {
-            color: @placeholders_color;
-            cursor: pointer;
-        }
-    }
-
-    .content_block {
-        width: calc(100% - 120px);
-        display: flex;
-        flex-direction: column;
-
-        .title_input {
-            height: 32px;
-            font-size: 22px;
-            .inputs_style();
-        }
-
-        .description_input {
-            width: 100%;
-            font-size: 18px;
-            margin-top: 22px;
-            margin-bottom: 22px;
-            resize: none;
-            word-wrap: break-word;
-            overflow: hidden;
-            .inputs_style();
-        }
-
-        .files_list {
-            display: grid;
-            grid-template-columns: repeat(4, 120px);
-
-            &>* {
-                margin-right: 20px;
-                margin-bottom: 20px;
-            }
-        }
-    }
-
-    label {
-        cursor: pointer;
-    }
-
-    .file_input {
-        display: none;
-    }
-}
+@import "global.less";
 
 .bottom_block {
     display: flex;
@@ -124,25 +22,10 @@
 
 }
 
-.date_input {
-    font-size: 18px;
-    color-scheme: dark;
-    background-color: @background_color;
-    border: none;
-
-    &:focus {
-        outline: none;
-    }
-}
-
 .create_new_task_menu {
-    width: 100%;
-    padding: 25px;
-    background-color: @background_color;
     margin-top: 42px;
-    border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
+    .task_style(#705CF1, #B9AEFF, #B9AEFF);
 }

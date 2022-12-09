@@ -1,98 +1,38 @@
-.title_input {
-  height: 32px;
-  font-size: 22px;
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  src: url('../assets/fonts/Nunito/Bold/Nunito-Bold.ttf') format('ttf'), url('../assets/fonts/Nunito//Bold/Nunito-Bold.woff') format('woff'), url('../assets/fonts/Nunito/Bold/Nunito-Bold.woff2') format('woff2');
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+#root {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+body {
+  background-color: #212121;
+}
+* {
+  font-family: "Nunito", sans-serif;
   color: #ffffff;
-  background-color: #705CF1;
-  border: none;
-}
-.inputs_style {
-  background-color: #705CF1;
-  border: none;
-}
-.inputs_style::placeholder {
-  color: #B9AEFF;
-}
-.inputs_style:focus {
-  outline: none;
-}
-.task_block img {
-  width: 32px;
-  height: 32px;
-  margin-right: 30px;
-}
-.task_block .climp {
   margin: 0;
 }
-.task_block h2 {
-  margin-top: 4px;
-  font-size: 20px;
-  color: #B9AEFF;
-}
-.upper_block {
-  width: 100%;
+.wrapper {
+  width: 804px;
   display: flex;
-  justify-content: space-between;
-}
-.upper_block .left_block {
-  width: 100%;
-  display: flex;
-}
-.upper_block .left_block > img {
-  height: 32px;
-  margin-right: 30px;
-  cursor: pointer;
-}
-.upper_block .left_block > h2 {
-  color: #B9AEFF;
-  cursor: pointer;
-}
-.upper_block .content_block {
-  width: calc(100% - 120px);
-  display: flex;
+  align-items: center;
   flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
 }
-.upper_block .content_block .title_input {
-  height: 32px;
-  font-size: 22px;
-  background-color: #705CF1;
-  border: none;
-}
-.upper_block .content_block .title_input::placeholder {
-  color: #B9AEFF;
-}
-.upper_block .content_block .title_input:focus {
-  outline: none;
-}
-.upper_block .content_block .description_input {
-  width: 100%;
-  font-size: 18px;
-  margin-top: 22px;
-  margin-bottom: 22px;
-  resize: none;
-  word-wrap: break-word;
-  overflow: hidden;
-  background-color: #705CF1;
-  border: none;
-}
-.upper_block .content_block .description_input::placeholder {
-  color: #B9AEFF;
-}
-.upper_block .content_block .description_input:focus {
-  outline: none;
-}
-.upper_block .content_block .files_list {
-  display: grid;
-  grid-template-columns: repeat(4, 120px);
-}
-.upper_block .content_block .files_list > * {
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
-.upper_block label {
-  cursor: pointer;
-}
-.upper_block .file_input {
-  display: none;
+.wrapper h1 {
+  margin-top: 50px;
 }
 .bottom_block {
   display: flex;
@@ -110,23 +50,107 @@
 .bottom_block .add_button:hover {
   background-color: #fc7b95;
 }
-.date_input {
+.create_new_task_menu {
+  margin-top: 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #705CF1;
+}
+.create_new_task_menu .inputs_style {
+  background-color: #705CF1;
+  border: none;
+  resize: none;
+  overflow: hidden;
+}
+.create_new_task_menu .inputs_style::placeholder {
+  color: #B9AEFF;
+}
+.create_new_task_menu .inputs_style:focus {
+  outline: none;
+}
+.create_new_task_menu .upper_block {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.create_new_task_menu .upper_block .left_block {
+  width: 78%;
+  display: flex;
+}
+.create_new_task_menu .upper_block .left_block > img {
+  height: 32px;
+  margin-right: 30px;
+  cursor: pointer;
+}
+.create_new_task_menu .upper_block .left_block > h2 {
+  max-width: calc(100% - 120px);
+  word-wrap: break-word;
+  color: #B9AEFF;
+  cursor: pointer;
+}
+.create_new_task_menu .upper_block .content_block {
+  width: calc(100% - 60px);
+  display: flex;
+  flex-direction: column;
+}
+.create_new_task_menu .upper_block .content_block .title_input {
+  height: 32px;
+  font-size: 22px;
+  background-color: #705CF1;
+  border: none;
+  resize: none;
+  overflow: hidden;
+}
+.create_new_task_menu .upper_block .content_block .title_input::placeholder {
+  color: #B9AEFF;
+}
+.create_new_task_menu .upper_block .content_block .title_input:focus {
+  outline: none;
+}
+.create_new_task_menu .upper_block .content_block .description_input {
+  width: 100%;
+  font-size: 18px;
+  margin-top: 22px;
+  margin-bottom: 22px;
+  background-color: #705CF1;
+  border: none;
+  resize: none;
+  overflow: hidden;
+}
+.create_new_task_menu .upper_block .content_block .description_input::placeholder {
+  color: #B9AEFF;
+}
+.create_new_task_menu .upper_block .content_block .description_input:focus {
+  outline: none;
+}
+.create_new_task_menu .upper_block .content_block .files_list {
+  display: grid;
+  grid-template-columns: repeat(3, 120px) 100px;
+}
+.create_new_task_menu .upper_block .content_block .files_list > * {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.create_new_task_menu .upper_block .content_block .files_list > *:nth-child(4n+4) {
+  margin-right: 0;
+}
+.create_new_task_menu .upper_block label {
+  cursor: pointer;
+}
+.create_new_task_menu .upper_block .file_input {
+  display: none;
+}
+.create_new_task_menu .date_input {
   font-size: 18px;
   color-scheme: dark;
   background-color: #705CF1;
   border: none;
 }
-.date_input:focus {
+.create_new_task_menu .date_input:focus {
   outline: none;
-}
-.create_new_task_menu {
-  width: 100%;
-  padding: 25px;
-  background-color: #705CF1;
-  margin-top: 42px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 /*# sourceMappingURL=CreateNewTaskMenu.css.map */

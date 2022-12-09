@@ -10,7 +10,6 @@ function Task(props) {
     const [isPerformedTask, setIsPerformedTask] = useState(props.isPerformed);
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const [dateColor, setDateColor] = useState('#FFFFFF');
-    const [titleColor, setTitleColor] = useState(props.title);
     const [filesListHeight, setFilesListHeight] = useState(0);
     const [openButtonScaleY, setOpenButtonScaleY] = useState(1);
 
@@ -22,15 +21,19 @@ function Task(props) {
     const nowDate = dayJS(new Date());
     useEffect(() => {
         const interval = setInterval(() => {
-            if (dayJS(dateValue).isBefore(nowDate)) {
+            console.log(props.isPerformed);
+            if (dayJS(dateValue).isBefore(nowDate) && isPerformedTask === false) {
                 setDateColor('#FF5656');
+            }
+            else if (isPerformedTask) {
+                setDateColor('#55ECEC');
             }
             else {
                 setDateColor('#FFFFFF');
             }
         }, 1000);
         return () => clearInterval(interval);
-    }, [dateValue]);
+    }, [dateValue, isPerformedTask]);
 
     /**
       * Переключает открытое и закрытое состояние меню, меняет направление кнопки "Открыть/Закрыть" (стрелка).
@@ -66,12 +69,10 @@ function Task(props) {
     function isPerformed() {
         if (isPerformedTask) {
             setIsPerformedTask(false);
-            setTitleColor('#FFFFFF');
             updateTask({ isPerformed: false });
         }
         else {
             setIsPerformedTask(true);
-            setTitleColor('#55ECEC');
             updateTask({ isPerformed: true });
         }
     }
@@ -126,7 +127,7 @@ function Task(props) {
                                 updateTask={updateTask}
                             />
                         )
-                        : <h2 style={{ color: titleColor }} >{titleValue}</h2>
+                        : <h2>{titleValue}</h2>
 
                     }
                 </div>

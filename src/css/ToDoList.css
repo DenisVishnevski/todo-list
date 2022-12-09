@@ -5,13 +5,52 @@
   align-items: center;
   margin-top: 30px;
 }
-.task {
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  src: url('../assets/fonts/Nunito/Bold/Nunito-Bold.ttf') format('ttf'), url('../assets/fonts/Nunito//Bold/Nunito-Bold.woff') format('woff'), url('../assets/fonts/Nunito/Bold/Nunito-Bold.woff2') format('woff2');
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+#root {
   width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+body {
+  background-color: #212121;
+}
+* {
+  font-family: "Nunito", sans-serif;
+  color: #ffffff;
+  margin: 0;
+}
+.wrapper {
+  width: 804px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.wrapper h1 {
+  margin-top: 50px;
+}
+.task {
   position: relative;
-  padding: 25px;
-  background-color: #3A3A3A;
-  border-radius: 20px;
   margin-top: 10px;
+  width: 100%;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #3A3A3A;
+}
+.task .left_block > h2 {
+  font-size: 22px;
 }
 .task .tick_icon {
   height: 32px;
@@ -30,12 +69,31 @@
   border: 3px solid #FFFFFF;
   border-radius: 100%;
 }
-.task > * {
+.task .buttons_block {
   display: flex;
+  align-items: flex-start;
+  height: 32px;
+}
+.task .buttons_block h2 {
+  font-size: 22px;
+  height: 24px;
+}
+.task .buttons_block img {
+  height: 32px;
+  width: 32px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+.task .date_block {
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
 }
 .task .inputs_style {
   background-color: #3A3A3A;
   border: none;
+  resize: none;
+  overflow: hidden;
 }
 .task .inputs_style::placeholder {
   color: #797979;
@@ -49,15 +107,22 @@
   justify-content: space-between;
 }
 .task .upper_block .left_block {
-  width: 100%;
+  width: 78%;
   display: flex;
 }
+.task .upper_block .left_block > img {
+  height: 32px;
+  margin-right: 30px;
+  cursor: pointer;
+}
 .task .upper_block .left_block > h2 {
+  max-width: calc(100% - 120px);
+  word-wrap: break-word;
   color: #FFFFFF;
-  font-size: 22px;
+  cursor: pointer;
 }
 .task .upper_block .content_block {
-  width: calc(100% - 120px);
+  width: calc(100% - 60px);
   display: flex;
   flex-direction: column;
 }
@@ -66,6 +131,8 @@
   font-size: 22px;
   background-color: #3A3A3A;
   border: none;
+  resize: none;
+  overflow: hidden;
 }
 .task .upper_block .content_block .title_input::placeholder {
   color: #797979;
@@ -78,11 +145,10 @@
   font-size: 18px;
   margin-top: 22px;
   margin-bottom: 22px;
-  resize: none;
-  word-wrap: break-word;
-  overflow: hidden;
   background-color: #3A3A3A;
   border: none;
+  resize: none;
+  overflow: hidden;
 }
 .task .upper_block .content_block .description_input::placeholder {
   color: #797979;
@@ -92,29 +158,14 @@
 }
 .task .upper_block .content_block .files_list {
   display: grid;
-  grid-template-columns: repeat(4, 120px);
+  grid-template-columns: repeat(3, 120px) 100px;
 }
 .task .upper_block .content_block .files_list > * {
   margin-right: 20px;
   margin-bottom: 20px;
 }
-.task .upper_block .content_block img {
-  margin: 0;
-}
-.task .upper_block .buttons_block {
-  display: flex;
-  align-items: center;
-  height: 32px;
-}
-.task .upper_block .buttons_block h2 {
-  font-size: 22px;
-  height: 24px;
-}
-.task .upper_block .buttons_block img {
-  height: 32px;
-  width: 32px;
-  margin-left: 20px;
-  cursor: pointer;
+.task .upper_block .content_block .files_list > *:nth-child(4n+4) {
+  margin-right: 0;
 }
 .task .upper_block label {
   cursor: pointer;
@@ -122,21 +173,13 @@
 .task .upper_block .file_input {
   display: none;
 }
-.task label img {
-  margin: 0;
-}
-.task .date_block {
-  position: absolute;
-  right: 25px;
-  bottom: 25px;
-}
-.task .date_block .date_input {
+.task .date_input {
   font-size: 18px;
   color-scheme: dark;
   background-color: #3A3A3A;
   border: none;
 }
-.task .date_block .date_input:focus {
+.task .date_input:focus {
   outline: none;
 }
 /*# sourceMappingURL=ToDoList.css.map */

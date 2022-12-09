@@ -1,11 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './css/global.css'
 import CreateNewTaskMenu from "./components/CreateNewTaskMenu";
 import ToDoList from './components/ToDoList';
 
-let taskId = 1;
+let storageTaskList = window.localStorage.getItem('task_list');
+
 function App() {
-  const [taskList, setTaskList] = useState([]);
+  const [taskList, setTaskList] = useState([...JSON.parse(storageTaskList)]);
+
+  useEffect(() => {
+    localStorage.setItem('task_list', JSON.stringify(taskList));
+  }, [taskList]);
 
   /**
    * Добавляет в массив новый обьект, состоящий из полученных данных и id элемента.
@@ -15,15 +20,19 @@ function App() {
    * @param {{name: string, path: string }[]} filesArray 
    */
   function addTask(title, description, deadline, filesArray) {
-    setTaskList([...taskList, { 
-      id: taskId, 
-      title: title, 
-      description: description, 
-      deadline: deadline, 
+    let taskId = 1;
+    let lastTask = taskList[taskList.length - 1];
+    if (lastTask) {
+      taskId = lastTask.id + 1;
+    }
+    setTaskList([...taskList, {
+      id: taskId,
+      title: title,
+      description: description,
+      deadline: deadline,
       filesArray: filesArray,
       isPerformed: false
     }]);
-    taskId += 1;
   }
 
   /**
@@ -35,7 +44,7 @@ function App() {
     let newTaskArray = [];
     for (let index = 0; index < taskList.length; index++) {
       if (taskList[index].id === id) {
-        newTaskArray.push({...taskList[index], ...value });
+        newTaskArray.push({ ...taskList[index], ...value });
       }
       else {
         newTaskArray.push(taskList[index]);
@@ -64,7 +73,7 @@ function App() {
     <div className="wrapper">
       <h1>TODO</h1>
       <CreateNewTaskMenu addTask={addTask} />
-      <ToDoList taskList={taskList} deleteTask={deleteTask} updateTasksList={updateTasksList}/>
+      <ToDoList taskList={taskList} deleteTask={deleteTask} updateTasksList={updateTasksList} />
     </div>
   );
 }
