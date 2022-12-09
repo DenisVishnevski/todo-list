@@ -6,7 +6,12 @@ import ToDoList from './components/ToDoList';
 let storageTaskList = window.localStorage.getItem('task_list');
 
 function App() {
-  const [taskList, setTaskList] = useState([...JSON.parse(storageTaskList)]);
+  const [taskList, setTaskList] = useState(() => {
+    if (JSON.parse(storageTaskList)) {
+      return [...JSON.parse(storageTaskList)]
+    }
+    return []
+  });
 
   useEffect(() => {
     localStorage.setItem('task_list', JSON.stringify(taskList));
