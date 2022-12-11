@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react';
 import './css/global.css'
 import CreateNewTaskMenu from "./components/CreateNewTaskMenu";
 import ToDoList from './components/ToDoList';
+import ContactButton from './components/UI/ContactButton';
+import telegramIcon from './assets/images/telegramIcon.svg'
+import myWebsiteIcon from './assets/images/myWebsiteIcon.svg'
+import githubIcon from './assets/images/githubIcon.svg'
 
 let storageTaskList = window.localStorage.getItem('task_list');
 
@@ -76,6 +80,11 @@ function App() {
   }
   return (
     <div className="wrapper">
+      <div className="contacts_block">
+        <ContactButton icon={myWebsiteIcon} title={"Мой сайт-портфолио"} link="https://denis-vishnevski.vercel.app/" />
+        <ContactButton icon={githubIcon} title={"GitHub"} link="https://github.com/DenisVishnevski" />
+        <ContactButton icon={telegramIcon} title={"Telegram"} link="https://t.me/Vishnevski0" />
+      </div>
       <h1>TODO</h1>
       <CreateNewTaskMenu addTask={addTask} />
       <ToDoList taskList={taskList} deleteTask={deleteTask} updateTasksList={updateTasksList} />

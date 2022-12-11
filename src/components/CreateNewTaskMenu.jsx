@@ -5,9 +5,7 @@ import ContentBlock from './ContentBlock';
 import FileInput from './FileInput';
 
 function CreateNewTaskMenu(props) {
-  const [menuHeight, setMenuHeight] = useState(80);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const [plusButtonRotation, setButtonIconRotation] = useState(0);
   const [filesListHeight, setFilesListHeight] = useState(0);
 
   const [titleValue, setTitleValue] = useState('');
@@ -27,17 +25,13 @@ function CreateNewTaskMenu(props) {
     }
   }
   /**
-   * Открывает меню: увеличивает высоту блока, 
-   * меняет кнопку "создать" (знак плюса) на закрыть блок (крестик). 
+   * Открывает меню: увеличивает высоту блока.
    */
   function openMenu() {
-    setMenuHeight(250);
     setMenuIsOpen(true);
-    setButtonIconRotation(45);
   }
   /**
-   * Закрывает меню: присваивает значения по умолчанию всем полям, уменьшает высоту блока,
-   * меняет кнопку закрыть блок (крестик) на "создать" (знак плюса).
+   * Закрывает меню: присваивает значения по умолчанию всем полям, уменьшает высоту блока.
    */
   function closeMenu() {
     setTitleValue('');
@@ -45,8 +39,6 @@ function CreateNewTaskMenu(props) {
     setDateValue('');
     setFilesArray([]);
     setMenuIsOpen(false);
-    setMenuHeight(80);
-    setButtonIconRotation(0);
   }
   /**
    * Передает поля родительскому компоненту, закрывает блок. 
@@ -82,45 +74,55 @@ function CreateNewTaskMenu(props) {
     }, "1")
   }
   return (
-    <div className='create_new_task_menu' style={{ minHeight: menuHeight }}>
-      <div className="upper_block">
-        <div className='left_block'>
-          <img style={{ transform: `rotate(${plusButtonRotation}deg)` }} onClick={isOpenMenuHandler} src={plus} alt="Create" />
-          {menuIsOpen
-            ? (
-              <ContentBlock
-                titleValue={titleValue}
-                setTitleValue={setTitleValue}
-                descriptionValue={descriptionValue}
-                setDescriptionValue={setDescriptionValue}
-                filesArray={filesArray}
-                deleteFile={deleteFile}
-                filesListHeight={filesListHeight}
-              />
-            )
-            : <h2 onClick={openMenu}>Создать новую заметку</h2>
-
-          }
-        </div>
-        {menuIsOpen
-          ? <FileInput addFile={addFile} taskId={'menu'} />
-          : null
-        }
-
-      </div>
+    <div className='create_new_task_menu'>
       {menuIsOpen
         ? (
-          <div className="bottom_block">
-            <button className='add_button' onClick={submitTask}>Добавить</button>
-            <input
-              type="date"
-              className='date_input'
-              value={dateValue}
-              onChange={(event) => { setDateValue(event.target.value) }}
-            />
+          <div className='create_menu'>
+            <div className="upper_block">
+              <div className='left_block'>
+                <img style={{ transform: `rotate(45deg)` }} onClick={isOpenMenuHandler} src={plus} alt="Create" />
+                <div className="divider"></div>
+
+                <ContentBlock
+                  titleValue={titleValue}
+                  setTitleValue={setTitleValue}
+                  descriptionValue={descriptionValue}
+                  setDescriptionValue={setDescriptionValue}
+                  filesArray={filesArray}
+                  deleteFile={deleteFile}
+                  filesListHeight={filesListHeight}
+                />
+              </div>
+              <div className="buttons_block">
+                {menuIsOpen
+                  ? <FileInput addFile={addFile} taskId={'menu'} />
+                  : null
+                }
+              </div>
+            </div>
+            {menuIsOpen
+              ? (
+                <div className="bottom_block">
+                  <button className='add_button' onClick={submitTask}>Добавить</button>
+                  <input
+                    type="date"
+                    className='date_input'
+                    value={dateValue}
+                    onChange={(event) => { setDateValue(event.target.value) }}
+                  />
+                </div>
+              )
+              : null
+            }
           </div>
         )
-        : null
+        : <div className="create_button" onClick={openMenu}>
+          <div className="buttons_block">
+            <img src={plus} alt="Create" />
+            <h2>Создать новую заметку</h2>
+          </div>
+        </div>
+
       }
     </div>
   );

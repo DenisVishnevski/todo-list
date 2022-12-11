@@ -3,10 +3,10 @@ import File from './UI/File';
 import { useState } from 'react';
 
 function ContentBlock(props) {
-    const [titleHeight, setTitleHeight] = useState(30);
+    const [titleHeight, setTitleHeight] = useState(24);
     const [titleSampleValue, setTitleSampleValue] = useState('');
 
-    const [descriptionHeight, setDescriptionHeight] = useState(30);
+    const [descriptionHeight, setDescriptionHeight] = useState(20);
     const [descriptionSampleValue, setDescriptionSampleValue] = useState('');
 
     const titleInputRef = useRef(null);

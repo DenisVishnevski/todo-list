@@ -113,6 +113,7 @@ function Task(props) {
                             : <div onClick={isPerformed} className="circle_icon"></div>
                         }
                     </div>
+                    <div className="divider"></div>
                     {menuIsOpen
                         ? (
                             <ContentBlock

@@ -23,7 +23,11 @@ body {
   color: #ffffff;
   margin: 0;
 }
+* textarea {
+  padding: 0;
+}
 .wrapper {
+  position: relative;
   width: 804px;
   display: flex;
   align-items: center;
@@ -33,5 +37,17 @@ body {
 }
 .wrapper h1 {
   margin-top: 50px;
+}
+.wrapper .contacts_block {
+  position: absolute;
+  display: flex;
+  top: 10px;
+  right: 0px;
+}
+.wrapper .contacts_block .contact_button {
+  margin-left: 15px;
+}
+.wrapper .contacts_block .contact_button img {
+  height: 24px;
 }
 /*# sourceMappingURL=global.css.map */
