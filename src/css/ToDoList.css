@@ -198,6 +198,16 @@ body {
 .task .upper_block .file_input {
   display: none;
 }
+.task .date_block {
+  display: flex;
+  align-items: center;
+}
+.task .date_block label {
+  display: none;
+  margin-top: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+}
 .task .date_input {
   font-size: 18px;
   color-scheme: dark;
@@ -272,8 +282,15 @@ body {
   .task .upper_block .content_block .files_list > *:last-child {
     margin-bottom: 30px;
   }
+  .task .date_block label {
+    display: block;
+  }
   .task .date_input {
     font-size: 15px;
+    width: 110px;
+  }
+  .task .date_input::-webkit-calendar-picker-indicator {
+    display: none;
   }
 }
 @media screen and (max-width: 479px) {

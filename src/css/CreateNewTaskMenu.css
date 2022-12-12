@@ -188,6 +188,16 @@ body {
 .create_new_task_menu .create_button .upper_block .file_input {
   display: none;
 }
+.create_new_task_menu .create_button .date_block {
+  display: flex;
+  align-items: center;
+}
+.create_new_task_menu .create_button .date_block label {
+  display: none;
+  margin-top: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+}
 .create_new_task_menu .create_button .date_input {
   font-size: 18px;
   color-scheme: dark;
@@ -262,8 +272,15 @@ body {
   .create_new_task_menu .create_button .upper_block .content_block .files_list > *:last-child {
     margin-bottom: 30px;
   }
+  .create_new_task_menu .create_button .date_block label {
+    display: block;
+  }
   .create_new_task_menu .create_button .date_input {
     font-size: 15px;
+    width: 110px;
+  }
+  .create_new_task_menu .create_button .date_input::-webkit-calendar-picker-indicator {
+    display: none;
   }
 }
 @media screen and (max-width: 479px) {
@@ -407,6 +424,16 @@ body {
 .create_new_task_menu .create_menu .upper_block .file_input {
   display: none;
 }
+.create_new_task_menu .create_menu .date_block {
+  display: flex;
+  align-items: center;
+}
+.create_new_task_menu .create_menu .date_block label {
+  display: none;
+  margin-top: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+}
 .create_new_task_menu .create_menu .date_input {
   font-size: 18px;
   color-scheme: dark;
@@ -481,8 +508,15 @@ body {
   .create_new_task_menu .create_menu .upper_block .content_block .files_list > *:last-child {
     margin-bottom: 30px;
   }
+  .create_new_task_menu .create_menu .date_block label {
+    display: block;
+  }
   .create_new_task_menu .create_menu .date_input {
     font-size: 15px;
+    width: 110px;
+  }
+  .create_new_task_menu .create_menu .date_input::-webkit-calendar-picker-indicator {
+    display: none;
   }
 }
 @media screen and (max-width: 479px) {

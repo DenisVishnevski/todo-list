@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import '../css/CreateNewTaskMenu.css';
 import plus from '../assets/images/plus.svg';
+import calendarIcon from '../assets/images/calendarIcon.svg'
 import ContentBlock from './ContentBlock';
 import FileInput from './FileInput';
 
@@ -95,7 +96,7 @@ function CreateNewTaskMenu(props) {
               </div>
               <div className="buttons_block">
                 {menuIsOpen
-                  ? <FileInput addFile={addFile} taskId={'menu'} />
+                  ? <FileInput addFile={addFile} taskId={'_menu'} />
                   : null
                 }
               </div>
@@ -104,12 +105,18 @@ function CreateNewTaskMenu(props) {
               ? (
                 <div className="bottom_block">
                   <button className='add_button' onClick={submitTask}>Добавить</button>
-                  <input
-                    type="date"
-                    className='date_input'
-                    value={dateValue}
-                    onChange={(event) => { setDateValue(event.target.value) }}
-                  />
+                  <div className="date_block">
+                    <input
+                      type="date"
+                      className='date_input'
+                      id='date_input_menu'
+                      value={dateValue}
+                      onChange={(event) => { setDateValue(event.target.value) }}
+                    />
+                    <label htmlFor={`date_input_menu`}>
+                      <img src={calendarIcon} alt="Calendar" />
+                    </label>
+                  </div>
                 </div>
               )
               : null

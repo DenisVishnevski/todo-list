@@ -181,6 +181,18 @@ body {
         }
     }
 
+    .date_block {
+        display: flex;
+        align-items: center;
+
+        label {
+            display: none;
+            margin-top: 4px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    }
+
     .date_input {
         font-size: 18px;
         color-scheme: dark;
@@ -276,8 +288,17 @@ body {
             }
         }
 
+        .date_block {
+            label {
+                display: block;
+            }
+        }
         .date_input {
             font-size: 15px;
+            width: 110px;
+            &::-webkit-calendar-picker-indicator {
+                display: none;
+            }
         }
     }
 

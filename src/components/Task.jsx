@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import ContentBlock from './ContentBlock';
 import dayJS from 'dayjs';
 import tick from '../assets/images/tick.svg'
+import calendarIcon from '../assets/images/calendarIcon.svg'
 import arrowIcon from '../assets/images/arrowIcon.svg'
 import FileInput from './FileInput';
 import DeleteButton from './UI/DeleteButton';
@@ -151,6 +152,7 @@ function Task(props) {
                         <input
                             type="date"
                             className='date_input'
+                            id={`date_input_${props.id}`}
                             style={{ color: dateColor }}
                             value={dateValue}
                             onChange={(event) => {
@@ -158,6 +160,9 @@ function Task(props) {
                                 updateTask({ deadline: event.target.value });
                             }}
                         />
+                        <label htmlFor={`date_input_${props.id}`}>
+                            <img src={calendarIcon} alt="Calendar" />
+                        </label>
                     </div>
                 )
                 : null
